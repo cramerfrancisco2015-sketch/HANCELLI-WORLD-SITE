@@ -103,7 +103,7 @@ export default function ArchiveDrop() {
                 >
                     {/* 360 Video Object */}
                     <video 
-                        className="relative z-10 block h-full w-full bg-black object-contain opacity-90 lg:opacity-100 mix-blend-screen transition-opacity duration-700"
+                        className="relative z-10 block h-full w-full bg-black object-contain opacity-90 lg:opacity-100 transition-opacity duration-700"
                         autoPlay 
                         loop 
                         muted 

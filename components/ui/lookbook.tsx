@@ -50,8 +50,8 @@ export default function Lookbook() {
       {/* MANIFESTO BLOCK */}
       <motion.div 
         id="conceito"
-        initial={{ opacity: 0, y: 36, filter: "blur(8px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         className="relative min-h-auto lg:min-h-[115svh] flex flex-col items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
       >
@@ -66,8 +66,8 @@ export default function Lookbook() {
 
       {/* CHAPTER 01 BLOCK */}
       <motion.div 
-        initial={{ opacity: 0, y: 36, filter: "blur(8px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         className="relative min-h-auto lg:min-h-[115svh] flex items-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
       >
@@ -101,8 +101,8 @@ export default function Lookbook() {
 
       {/* CHAPTER 02 BLOCK */}
       <motion.div 
-        initial={{ opacity: 0, y: 36, filter: "blur(8px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         className="relative min-h-auto lg:min-h-[115svh] flex items-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.03),transparent_42%)] before:pointer-events-none max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
       >
@@ -137,8 +137,8 @@ export default function Lookbook() {
       {/* PRESAVE BLOCK */}
       <motion.div 
         id="pre-lista"
-        initial={{ opacity: 0, y: 36, filter: "blur(8px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         className="relative min-h-auto lg:min-h-[115svh] flex items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
       >
