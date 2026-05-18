@@ -61,19 +61,13 @@ export default function Checkout({ lang, onLanguageChange }: CheckoutProps) {
           {/* Column 2: Contacto */}
           <div className="flex flex-col gap-4">
             <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono font-bold">{t.columnContact}</span>
-            <div className="flex flex-col gap-2.5 text-xs text-zinc-400">
-              <a href="mailto:hancelliworld@gmail.com" className="flex flex-col hover:text-white transition-colors group">
-                <span className="text-[10px] text-zinc-600 uppercase font-mono group-hover:text-zinc-400">Email</span>
-                <span className="font-mono text-zinc-300">hancelliworld@gmail.com</span>
-              </a>
+            <div className="flex flex-col gap-2.5">
               <a
-                href="https://wa.me/351933108843?text=Ol%C3%A1%20HANCELLI%20WORLD%2C%20quero%20saber%20mais%20sobre%20a%20pr%C3%A9-lista%20do%20Archive%20PT.01"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col hover:text-white transition-colors group"
+                href="mailto:hancelliworld@gmail.com?subject=HANCELLI%20WORLD%20%E2%80%94%20Contacto"
+                className="inline-flex items-center justify-center w-full px-5 py-3.5 border border-white/10 hover:border-white/35 bg-white/[0.02] hover:bg-white/[0.06] text-white text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-full text-center relative z-20 pointer-events-auto touch-manipulation cursor-pointer mt-1"
+                style={{ fontFamily: 'Oswald, sans-serif' }}
               >
-                <span className="text-[10px] text-zinc-600 uppercase font-mono group-hover:text-zinc-400">WhatsApp</span>
-                <span className="font-mono text-zinc-300">+351 933 108 843</span>
+                {t.btnContact}
               </a>
             </div>
           </div>

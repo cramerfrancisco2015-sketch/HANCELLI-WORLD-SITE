@@ -85,6 +85,7 @@ export interface TranslationSchema {
     footerBtn: string;
     brandDesc: string;
     columnContact: string;
+    btnContact: string;
     columnSocial: string;
     columnLegal: string;
     linkTerms: string;
@@ -190,6 +191,7 @@ export const translations: Record<Language, TranslationSchema> = {
       footerBtn: "ENTRAR NA LISTA DE ESPERA",
       brandDesc: "Jeans feito à mão. Memória cultural para vestir. Produzido em edições limitadas em Portugal.",
       columnContact: "CONTACTO",
+      btnContact: "ENVIAR MENSAGEM",
       columnSocial: "REDES SOCIAIS",
       columnLegal: "LEGAL",
       linkTerms: "Termos e Condições",
@@ -293,6 +295,7 @@ export const translations: Record<Language, TranslationSchema> = {
       footerBtn: "JOIN THE WAITLIST",
       brandDesc: "Handcrafted denim. Wearing cultural memory. Produced in limited editions in Portugal.",
       columnContact: "CONTACT",
+      btnContact: "SEND MESSAGE",
       columnSocial: "SOCIAL",
       columnLegal: "LEGAL",
       linkTerms: "Terms & Conditions",
@@ -396,6 +399,7 @@ export const translations: Record<Language, TranslationSchema> = {
       footerBtn: "REJOINDRE LA WAITLIST",
       brandDesc: "Jeans fait main. Mémoire culturelle à porter. Fabriqué en éditions limitées au Portugal.",
       columnContact: "CONTACT",
+      btnContact: "ENVOYER UN MESSAGE",
       columnSocial: "RÉSEAUX",
       columnLegal: "LÉGAL",
       linkTerms: "Conditions Générales",
@@ -499,6 +503,7 @@ export const translations: Record<Language, TranslationSchema> = {
       footerBtn: "AUF DIE WAITLIST EINTRAGEN",
       brandDesc: "Handgefertigtes Denim. Kulturgedächtnis zum Tragen. In limitierter Stückzahl in Portugal produziert.",
       columnContact: "KONTAKT",
+      btnContact: "NACHRICHT SENDEN",
       columnSocial: "MEDIEN",
       columnLegal: "RECHTLICHES",
       linkTerms: "AGB & Bedingungen",
@@ -602,6 +607,7 @@ export const translations: Record<Language, TranslationSchema> = {
       footerBtn: "加入候补名单",
       brandDesc: "纯手工丹宁。穿在身上的文化记忆。于葡萄牙限量手工制造。",
       columnContact: "联系我们",
+      btnContact: "发送消息",
       columnSocial: "社交媒体",
       columnLegal: "法律条款",
       linkTerms: "使用条款与服务协议",
