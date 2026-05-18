@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { motion, type Transition, AnimatePresence } from 'framer-motion';
+import { type Language, translations } from '@/lib/translations';
 
 const WAITLIST_ENDPOINT = "https://formspree.io/f/mdajoapb";
 const isWaitlistDisabled =
@@ -9,19 +10,19 @@ const isWaitlistDisabled =
 const imgTransition: Transition = { duration: 1.1, ease: "easeOut" };
 const textTransition: Transition = { duration: 0.85, delay: 0.15, ease: "easeOut" };
 
-const POPUP_MESSAGES = [
-  "WAITLIST UPDATE — Nova entrada registada para o Archive PT.01.",
-  "ARCHIVE PT.01 — A lista de espera está em movimento.",
-  "WAITLIST ATIVA — O primeiro drop já começou a reunir interessados.",
-  "HANCELLI WORLD — Uma nova entrada foi registada há instantes."
-];
+interface LookbookProps {
+  lang: Language;
+}
 
-export default function Lookbook() {
+export default function Lookbook({ lang }: LookbookProps) {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'disabled'>('idle');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
-  const [size, setSize] = useState('Ainda não sei');
+  const [size, setSize] = useState('Unknown');
+
+  const t = translations[lang].lookbook;
+  const popupMessages = t.popupMessages;
 
   // Popup states
   const [showPopup, setShowPopup] = useState(false);
@@ -64,7 +65,7 @@ export default function Lookbook() {
     let hideTimeout: NodeJS.Timeout;
 
     const triggerPopupSequence = () => {
-      setCurrentMessageIndex(Math.floor(Math.random() * POPUP_MESSAGES.length));
+      setCurrentMessageIndex(Math.floor(Math.random() * popupMessages.length));
       setShowPopup(true);
 
       hideTimeout = setTimeout(() => {
@@ -85,7 +86,7 @@ export default function Lookbook() {
       clearTimeout(hideTimeout);
       clearInterval(interval);
     };
-  }, [hasScrolledPastHero, formStatus, isFormFocused]);
+  }, [hasScrolledPastHero, formStatus, isFormFocused, popupMessages.length]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,11 +104,12 @@ export default function Lookbook() {
           name: name.trim(),
           email,
           whatsapp,
-          size,
+          size: size === 'Unknown' ? t.sizePlaceholder : size,
           source: "HANCELLI_WORLD_WAITLIST",
           interest: "ARCHIVE_PT_01_HANCELLI_JEANS",
           launchDiscountInterest: true,
-          submittedAt: new Date().toISOString()
+          submittedAt: new Date().toISOString(),
+          language: lang
         })
       });
       if (res.ok) setFormStatus('success');
@@ -129,11 +131,11 @@ export default function Lookbook() {
         className="relative min-h-auto lg:min-h-[115svh] flex flex-col items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
       >
         <h2 className="font-oswald uppercase text-[clamp(2.4rem,5.6vw,6.4rem)] leading-[0.98] tracking-[-0.025em] text-white text-center max-w-[1120px] mx-auto">
-          <span className="block">A roupa conta uma história.</span>
-          <span className="block mt-4 md:mt-5">A história expõe uma cultura.</span>
+          <span className="block">{t.manifestoLine1}</span>
+          <span className="block mt-4 md:mt-5">{t.manifestoLine2}</span>
         </h2>
         <p className="mt-8 max-w-2xl mx-auto text-center text-sm md:text-base text-white/58 leading-7">
-          HANCELLI WORLD transforma memória cultural em luxury streetwear — peças feitas para vestir, ler e lembrar.
+          {t.manifestoDesc}
         </p>
       </motion.div>
 
@@ -161,12 +163,12 @@ export default function Lookbook() {
             transition={textTransition}
             className="flex flex-col items-center text-center lg:items-start lg:text-left order-1 lg:order-2 max-w-md mx-auto lg:mx-0 max-md:!opacity-100 max-md:!transform-none"
           >
-            <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">CAPÍTULO 01</span>
-            <h3 className="font-oswald uppercase text-[clamp(2.2rem,4.4vw,5.2rem)] leading-[0.95] tracking-[-0.02em] text-white mb-6">
-              Nascida do arquivo.<br/>Feita para a rua.
+            <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">{t.chapter1}</span>
+            <h3 className="font-oswald uppercase text-[clamp(2.2rem,4.4vw,5.2rem)] leading-[0.95] tracking-[-0.02em] text-white mb-6 whitespace-pre-line">
+              {t.chapter1Title}
             </h3>
             <p className="mt-6 max-w-md text-white/60 leading-7">
-              Cada detalhe parte de cartazes antigos, referências visuais e fragmentos de cultura popular. No jeans, esses sinais deixam de ser apenas memória — tornam-se presença.
+              {t.chapter1Desc}
             </p>
           </motion.div>
         </div>
@@ -186,12 +188,12 @@ export default function Lookbook() {
             transition={textTransition}
             className="flex flex-col items-center text-center lg:items-end lg:text-right max-w-md mx-auto lg:mx-0 lg:ml-auto max-md:!opacity-100 max-md:!transform-none"
           >
-            <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">CAPÍTULO 02</span>
-            <h3 className="font-oswald uppercase text-[clamp(2.2rem,4.4vw,5.2rem)] leading-[0.95] tracking-[-0.02em] text-white mb-6">
-              A cultura move-se através das pessoas.
+            <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">{t.chapter2}</span>
+            <h3 className="font-oswald uppercase text-[clamp(2.2rem,4.4vw,5.2rem)] leading-[0.95] tracking-[-0.02em] text-white mb-6 whitespace-pre-line">
+              {t.chapter2Title}
             </h3>
             <p className="mt-6 max-w-md text-white/60 leading-7">
-              A peça ganha vida quando sai do arquivo e entra na rua. Imagem, atitude e identidade encontram-se numa presença visual própria.
+              {t.chapter2Desc}
             </p>
           </motion.div>
           <div className="flex justify-center lg:justify-start">
@@ -216,28 +218,28 @@ export default function Lookbook() {
         className="relative min-h-auto lg:min-h-[115svh] flex items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
       >
         <div className="w-full max-w-lg bg-white/[0.025] border border-white/[0.08] p-8 md:p-12 rounded-[2rem] shadow-[0_32px_100px_rgba(0,0,0,0.5)] backdrop-blur-xl flex flex-col items-center">
-          <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">ARCHIVE PT.01 — PRIMEIRO DROP</span>
-          <h3 className="font-oswald text-2xl md:text-4xl leading-[0.95] tracking-tight text-white mb-4 uppercase">ENTRA NA WAITLIST DO PRIMEIRO DROP</h3>
+          <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">{t.waitlistHeader}</span>
+          <h3 className="font-oswald text-2xl md:text-4xl leading-[0.95] tracking-tight text-white mb-4 uppercase">{t.waitlistTitle}</h3>
           <p className="font-sans text-sm leading-7 text-white/58 max-w-md text-center mb-8">
-            Recebe primeiro a data de lançamento, disponibilidade de tamanhos e acesso ao desconto de lançamento.
+            {t.waitlistDesc}
           </p>
 
           {formStatus === 'success' ? (
             <div className="flex flex-col items-center justify-center py-8 w-full border border-white/10 rounded-2xl bg-white/5 px-6 text-center">
               <p className="text-sm text-white font-medium tracking-wide">
                 {name.trim() 
-                  ? `${name.trim().split(/\s+/)[0].charAt(0).toUpperCase() + name.trim().split(/\s+/)[0].slice(1).toLowerCase()}, estás oficialmente na waitlist.` 
-                  : "Estás oficialmente na waitlist."}
+                  ? `${name.trim().split(/\s+/)[0].charAt(0).toUpperCase() + name.trim().split(/\s+/)[0].slice(1).toLowerCase()}, ${t.successTitle}` 
+                  : t.successTitleNoName}
               </p>
               <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
-                Os próximos passos do Archive PT.01 serão enviados para o teu email.
+                {t.successDesc}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 text-left">
               {/* NOME INPUT */}
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="name" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">NOME</label>
+                <label htmlFor="name" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">{t.labelName}</label>
                 <input 
                   type="text" 
                   id="name"
@@ -248,7 +250,7 @@ export default function Lookbook() {
                   onFocus={() => setIsFormFocused(true)}
                   onBlur={() => setIsFormFocused(false)}
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-white/30 transition-colors"
-                  placeholder="O teu nome"
+                  placeholder={t.placeholderName}
                 />
               </div>
 
@@ -271,7 +273,7 @@ export default function Lookbook() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* WHATSAPP INPUT */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="whatsapp" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">WHATSAPP (OPCIONAL)</label>
+                  <label htmlFor="whatsapp" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">{t.labelWhatsapp}</label>
                   <input 
                     type="tel" 
                     id="whatsapp"
@@ -286,7 +288,7 @@ export default function Lookbook() {
                 
                 {/* SIZE SELECT */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="size" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">TAMANHO PREFERIDO</label>
+                  <label htmlFor="size" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">{t.labelSize}</label>
                   <select 
                     id="size"
                     value={size}
@@ -295,21 +297,22 @@ export default function Lookbook() {
                     onBlur={() => setIsFormFocused(false)}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-white/30 transition-colors appearance-none"
                   >
-                    {['Ainda não sei', '28', '30', '32', '34', '36', '38', '40', '42', '44', '46', '48'].map(s => (
+                    <option value="Unknown" className="bg-zinc-900">{t.sizePlaceholder}</option>
+                    {['28', '30', '32', '34', '36', '38', '40', '42', '44', '46', '48'].map(s => (
                       <option key={s} value={s} className="bg-zinc-900">{s}</option>
                     ))}
                   </select>
                   <span className="text-[9px] text-zinc-500 ml-1 leading-normal">
-                    Escolhe o tamanho que costumas usar em jeans. Se não tiveres certeza, seleciona ‘Ainda não sei’.
+                    {t.sizeHint}
                   </span>
                 </div>
               </div>
 
               {formStatus === 'disabled' && (
-                <p className="text-xs text-amber-500/80 text-center mt-2">A lista ainda está a ser ativada. Volta em breve ou contacta-nos pelo botão CONTACTO.</p>
+                <p className="text-xs text-amber-500/80 text-center mt-2">{t.disabledMessage}</p>
               )}
               {formStatus === 'error' && (
-                <p className="text-xs text-red-500/80 text-center mt-2">Não foi possível guardar a tua inscrição. Tenta novamente.</p>
+                <p className="text-xs text-red-500/80 text-center mt-2">{t.errorMessage}</p>
               )}
 
               <button 
@@ -317,17 +320,17 @@ export default function Lookbook() {
                 disabled={formStatus === 'loading' || formStatus === 'disabled'}
                 className="w-full mt-4 py-4 bg-[#F2F0E9] text-black font-semibold text-[11px] uppercase tracking-[0.22em] rounded-full hover:bg-white hover:-translate-y-0.5 transition-all shadow-lg disabled:opacity-50 disabled:hover:translate-y-0"
               >
-                {formStatus === 'loading' ? 'A CARREGAR...' : 'ENTRAR NA LISTA DE ESPERA'}
+                {formStatus === 'loading' ? t.btnLoading : t.btnWaitlist}
               </button>
 
               <p className="text-[10px] text-zinc-500 leading-normal text-center mt-3 font-sans">
-                Depois da inscrição, vais receber um email de confirmação com os próximos passos da HANCELLI WORLD.
+                {t.followUpNotice}
               </p>
 
               <p className="text-[9px] text-zinc-600 leading-normal text-center mt-1.5 font-sans">
-                Ao entrares na waitlist, aceitas ser contactado pela HANCELLI WORLD sobre o lançamento. Consulta a{' '}
+                {t.privacyNotice}{' '}
                 <a href="/privacidade" className="underline hover:text-white transition-colors">
-                  Política de Privacidade
+                  {t.privacyLink}
                 </a>
                 .
               </p>
@@ -337,16 +340,16 @@ export default function Lookbook() {
           {/* Benefits */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mt-10 w-full pt-8 border-t border-white/[0.08]">
             <div className="flex flex-col items-center text-center">
-              <span className="text-[10px] tracking-[0.28em] text-white/80 mb-1 uppercase font-mono">ACESSO ANTECIPADO</span>
-              <span className="text-xs text-white/40 leading-tight font-sans mt-1">Recebe os detalhes antes do público.</span>
+              <span className="text-[10px] tracking-[0.28em] text-white/80 mb-1 uppercase font-mono">{t.benefit1Title}</span>
+              <span className="text-xs text-white/40 leading-tight font-sans mt-1">{t.benefit1Desc}</span>
             </div>
             <div className="flex flex-col items-center text-center">
-              <span className="text-[10px] tracking-[0.28em] text-white/80 mb-1 uppercase font-mono">DESCONTO DE LANÇAMENTO</span>
-              <span className="text-xs text-white/40 leading-tight font-sans mt-1">Acesso a desconto exclusivo de lançamento.</span>
+              <span className="text-[10px] tracking-[0.28em] text-white/80 mb-1 uppercase font-mono">{t.benefit2Title}</span>
+              <span className="text-xs text-white/40 leading-tight font-sans mt-1">{t.benefit2Desc}</span>
             </div>
             <div className="flex flex-col items-center text-center">
-              <span className="text-[10px] tracking-[0.28em] text-white/80 mb-1 uppercase font-mono">PRIORIDADE NO TAMANHO</span>
-              <span className="text-xs text-white/40 leading-tight font-sans mt-1">Ajuda-nos a preparar os tamanhos mais pedidos.</span>
+              <span className="text-[10px] tracking-[0.28em] text-white/80 mb-1 uppercase font-mono">{t.benefit3Title}</span>
+              <span className="text-xs text-white/40 leading-tight font-sans mt-1">{t.benefit3Desc}</span>
             </div>
           </div>
         </div>
@@ -364,7 +367,7 @@ export default function Lookbook() {
           >
             <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
             <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-white/80 leading-normal">
-              {POPUP_MESSAGES[currentMessageIndex]}
+              {popupMessages[currentMessageIndex]}
             </p>
             <button 
               onClick={() => setShowPopup(false)}

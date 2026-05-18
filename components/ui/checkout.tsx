@@ -1,6 +1,15 @@
 import React from 'react';
+import { type Language, translations } from '@/lib/translations';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
-export default function Checkout() {
+interface CheckoutProps {
+  lang: Language;
+  onLanguageChange?: (lang: Language) => void;
+}
+
+export default function Checkout({ lang, onLanguageChange }: CheckoutProps) {
+  const t = translations[lang].checkout;
+
   return (
     <footer id="contacto" className="relative border-t border-white/10 bg-zinc-950/50 backdrop-blur-md pt-20 pb-12 px-6 overflow-hidden">
       {/* Background soft glow */}
@@ -14,17 +23,17 @@ export default function Checkout() {
             className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-5 text-white"
             style={{ fontFamily: 'Oswald, sans-serif' }}
           >
-            ARQUIVO 01
+            {t.footerTitle}
           </h2>
           <p className="max-w-sm text-sm text-zinc-400 leading-relaxed mb-8">
-            Primeira edição feita à mão. Entra na pré-lista para seres avisado antes do lançamento e garantires o teu tamanho.
+            {t.footerDesc}
           </p>
           <a
             href="#pre-lista"
             className="inline-flex items-center justify-center px-10 py-4 bg-white text-black hover:bg-zinc-100 text-xs uppercase tracking-widest font-bold transition-all hover:scale-105 rounded-full"
             style={{ fontFamily: 'Oswald, sans-serif' }}
           >
-            ENTRAR NA PRÉ-LISTA
+            {t.footerBtn}
           </a>
         </div>
 
@@ -39,13 +48,19 @@ export default function Checkout() {
               HANCELLI WORLD
             </span>
             <p className="text-xs text-zinc-400 leading-relaxed max-w-xs">
-              Jeans feito à mão. Memória cultural para vestir. Produzido em edições limitadas em Portugal.
+              {t.brandDesc}
             </p>
+            {onLanguageChange && (
+              <div className="md:hidden mt-2 relative z-20 pointer-events-auto">
+                <span className="text-[8px] text-zinc-600 uppercase font-mono block mb-1 select-none pointer-events-none">Language / Idioma</span>
+                <LanguageSwitcher currentLang={lang} onLanguageChange={onLanguageChange} />
+              </div>
+            )}
           </div>
 
           {/* Column 2: Contacto */}
           <div className="flex flex-col gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono font-bold">CONTACTO</span>
+            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono font-bold">{t.columnContact}</span>
             <div className="flex flex-col gap-2.5 text-xs text-zinc-400">
               <a href="mailto:hancelliworld@gmail.com" className="flex flex-col hover:text-white transition-colors group">
                 <span className="text-[10px] text-zinc-600 uppercase font-mono group-hover:text-zinc-400">Email</span>
@@ -65,7 +80,7 @@ export default function Checkout() {
 
           {/* Column 3: Redes */}
           <div className="flex flex-col gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono font-bold">REDES SOCIAIS</span>
+            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono font-bold">{t.columnSocial}</span>
             <div className="flex flex-col gap-2 text-xs text-zinc-300">
               <a
                 href="https://www.instagram.com/hancelliworld"
@@ -88,16 +103,16 @@ export default function Checkout() {
 
           {/* Column 4: Links Legais */}
           <div className="flex flex-col gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono font-bold">LEGAL</span>
+            <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono font-bold">{t.columnLegal}</span>
             <div className="flex flex-col gap-2 text-xs text-zinc-400">
               <a href="/termos" className="block hover:text-white transition-colors">
-                Termos e Condições
+                {t.linkTerms}
               </a>
               <a href="/privacidade" className="block hover:text-white transition-colors">
-                Política de Privacidade
+                {t.linkPrivacy}
               </a>
               <a href="/cookies" className="block hover:text-white transition-colors">
-                Política de Cookies
+                {t.linkCookies}
               </a>
             </div>
           </div>
@@ -105,8 +120,8 @@ export default function Checkout() {
 
         {/* RIGHTS RESERVED ROW */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/5 text-center md:text-left text-[10px] text-zinc-500 uppercase tracking-widest font-mono">
-          <span>© 2026 HANCELLI WORLD. Todos os direitos reservados.</span>
-          <span className="text-zinc-600">EDITION PT.01 — MADE IN PORTUGAL</span>
+          <span>{t.rightsReserved}</span>
+          <span className="text-zinc-600">{t.editionTag}</span>
         </div>
       </div>
     </footer>

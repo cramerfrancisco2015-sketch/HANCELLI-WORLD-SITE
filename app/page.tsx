@@ -5,9 +5,25 @@ import ArchiveDrop from '@/components/ui/archive-drop'
 
 import Checkout from '@/components/ui/checkout'
 import HancelliHeader from '@/components/landing/HancelliHeader'
+import { type Language, translations } from '@/lib/translations'
+import { getInitialLanguage, saveLanguage } from '@/lib/language'
 
 export default function Home() {
     const [isMobile, setIsMobile] = useState<boolean | null>(null);
+    const [lang, setLang] = useState<Language>('pt');
+
+    useEffect(() => {
+        const initialLang = getInitialLanguage();
+        const frame = requestAnimationFrame(() => {
+            setLang(initialLang);
+        });
+        return () => cancelAnimationFrame(frame);
+    }, []);
+
+    const handleLanguageChange = (newLang: Language) => {
+        setLang(newLang);
+        saveLanguage(newLang);
+    };
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -35,6 +51,8 @@ export default function Home() {
         ]
     };
 
+    const t = translations[lang];
+
     return (
         <main className="bg-black min-h-screen">
             {/* Structured JSON-LD Data for SEO */}
@@ -44,7 +62,7 @@ export default function Home() {
             />
 
             {/* LIQUID NAVBAR (FIXED) */}
-            <HancelliHeader />
+            <HancelliHeader currentLang={lang} onLanguageChange={handleLanguageChange} />
 
             {/* HERO VIDEO */}
             <section id="inicio" className="relative min-h-[100svh] w-full overflow-hidden flex items-center justify-center">
@@ -88,15 +106,15 @@ export default function Home() {
                         HANCELLI<br />WORLD
                     </h1>
                     <p className="mt-6 max-w-xs text-[0.65rem] font-medium uppercase tracking-[0.34em] text-white/70 md:max-w-none md:text-xs">
-                        Jeans feito à mão. Memória cultural para vestir.
+                        {t.hero.subtitle}
                     </p>
                 </div>
             </section>
 
-            <ArchiveDrop />
-            <Lookbook />
+            <ArchiveDrop lang={lang} />
+            <Lookbook lang={lang} />
 
-            <Checkout />
+            <Checkout lang={lang} onLanguageChange={handleLanguageChange} />
         </main>
     )
 }

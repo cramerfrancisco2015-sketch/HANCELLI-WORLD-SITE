@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion, useScroll } from 'framer-motion'
+import { type Language, translations } from '@/lib/translations'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 
-const navLinks = [
-    { name: 'Início', href: '#inicio' },
-    { name: 'Produto', href: '#produto' },
-    { name: 'História', href: '#historia' },
-    { name: 'WAITLIST', href: '#pre-lista' }
-]
+interface HancelliHeaderProps {
+    currentLang: Language;
+    onLanguageChange: (lang: Language) => void;
+}
 
-export default function HancelliHeader() {
+export default function HancelliHeader({ currentLang, onLanguageChange }: HancelliHeaderProps) {
     const { scrollY } = useScroll()
     const [scrolled, setScrolled] = useState(false)
 
@@ -20,6 +20,15 @@ export default function HancelliHeader() {
         })
         return () => unsubscribe()
     }, [scrollY])
+
+    const t = translations[currentLang]
+
+    const navLinks = [
+        { name: t.nav.home, href: '#inicio' },
+        { name: t.nav.product, href: '#produto' },
+        { name: t.nav.story, href: '#historia' },
+        { name: t.nav.waitlist, href: '#pre-lista' }
+    ]
 
     return (
         <>
@@ -48,7 +57,7 @@ export default function HancelliHeader() {
                         className="rounded-full bg-white text-black px-4 py-2 text-[0.65rem] font-bold tracking-[0.18em] uppercase pointer-events-auto transition-transform active:scale-95 duration-200"
                         style={{ fontFamily: 'Oswald, sans-serif' }}
                     >
-                        WAITLIST
+                        {t.nav.waitlist}
                     </a>
                 </div>
             </header>
@@ -91,13 +100,16 @@ export default function HancelliHeader() {
                         ))}
                     </nav>
 
-                    {/* Botão CONTACTO */}
-                    <a
-                        href="#contacto"
-                        className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-2 font-oswald text-xs font-bold uppercase tracking-[0.2em] text-white/85 hover:bg-white/20 hover:text-white hover:border-white/30 transition-all duration-300"
-                    >
-                        CONTACTO
-                    </a>
+                    {/* Language Switcher and Contacto */}
+                    <div className="flex items-center gap-4">
+                        <LanguageSwitcher currentLang={currentLang} onLanguageChange={onLanguageChange} />
+                        <a
+                            href="#contacto"
+                            className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-2 font-oswald text-xs font-bold uppercase tracking-[0.2em] text-white/85 hover:bg-white/20 hover:text-white hover:border-white/30 transition-all duration-300"
+                        >
+                            {t.nav.contact}
+                        </a>
+                    </div>
                 </div>
             </motion.header>
         </>
