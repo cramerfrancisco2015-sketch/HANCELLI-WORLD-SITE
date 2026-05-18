@@ -1,30 +1,34 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+
+const baseUrl = "https://www.hancelliworld.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+
   return [
     {
-      url: 'https://www.hancelliworld.com',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1.0,
+      url: `${baseUrl}/`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 1,
     },
     {
-      url: 'https://www.hancelliworld.com/termos',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      url: `${baseUrl}/termos`,
+      lastModified,
+      changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: 'https://www.hancelliworld.com/privacidade',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      url: `${baseUrl}/privacidade`,
+      lastModified,
+      changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: 'https://www.hancelliworld.com/cookies',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      url: `${baseUrl}/cookies`,
+      lastModified,
+      changeFrequency: "monthly",
       priority: 0.3,
     },
-  ]
+  ];
 }
