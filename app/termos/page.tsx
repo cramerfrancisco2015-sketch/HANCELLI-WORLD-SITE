@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 export const metadata = {
     title: 'Termos e Condições — HANCELLI WORLD',
@@ -12,13 +13,13 @@ export default function TermosPage() {
                 
                 {/* BACK LINK */}
                 <div>
-                    <a 
+                    <Link 
                         href="/" 
                         className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-zinc-500 hover:text-white transition-colors group"
                     >
                         <span className="group-hover:-translate-x-1 transition-transform inline-block">←</span>
                         Voltar ao Site
-                    </a>
+                    </Link>
                 </div>
 
                 {/* HEADER */}

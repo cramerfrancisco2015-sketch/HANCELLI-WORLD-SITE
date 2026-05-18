@@ -39,7 +39,7 @@ export default function Lookbook() {
       });
       if (res.ok) setFormStatus('success');
       else setFormStatus('error');
-    } catch (err) {
+    } catch {
       setFormStatus('error');
     }
   };
