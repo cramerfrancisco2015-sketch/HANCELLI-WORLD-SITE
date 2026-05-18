@@ -1,13 +1,13 @@
 'use client'
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Transition } from 'framer-motion';
 
 const WAITLIST_ENDPOINT = "https://formspree.io/f/mdajoapb";
 const isWaitlistDisabled =
   !WAITLIST_ENDPOINT || WAITLIST_ENDPOINT.includes("COLOCAR_ENDPOINT");
 
-const imgTransition = { duration: 1.1, ease: "easeOut" };
-const textTransition = { duration: 0.85, delay: 0.15, ease: "easeOut" };
+const imgTransition: Transition = { duration: 1.1, ease: "easeOut" };
+const textTransition: Transition = { duration: 0.85, delay: 0.15, ease: "easeOut" };
 
 export default function Lookbook() {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'disabled'>('idle');
