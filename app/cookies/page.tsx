@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 
 export const metadata = {
-    title: 'Política de Cookies — HANCELLI WORLD',
-    description: 'Política de Cookies oficial da landing page e pré-lista HANCELLI WORLD.'
+    title: 'Política de Cookies',
+    description: 'Informação sobre o uso de cookies técnicos no site HANCELLI WORLD.'
 }
 
 export default function CookiesPage() {

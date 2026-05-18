@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 
 export const metadata = {
-    title: 'Termos e Condições — HANCELLI WORLD',
-    description: 'Termos e Condições oficiais da landing page e pré-lista HANCELLI WORLD.'
+    title: 'Termos e Condições',
+    description: 'Termos e condições de utilização da HANCELLI WORLD.'
 }
 
 export default function TermosPage() {

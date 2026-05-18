@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 
 export const metadata = {
-    title: 'Política de Privacidade — HANCELLI WORLD',
-    description: 'Política de Privacidade oficial da landing page e pré-lista HANCELLI WORLD.'
+    title: 'Política de Privacidade',
+    description: 'Como a HANCELLI WORLD recolhe, utiliza e protege dados pessoais.'
 }
 
 export default function PrivacidadePage() {

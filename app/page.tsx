@@ -23,8 +23,26 @@ export default function Home() {
         };
     }, []);
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "HANCELLI WORLD",
+        "url": "https://www.hancelliworld.com",
+        "email": "hancelliworld@gmail.com",
+        "sameAs": [
+            "https://www.instagram.com/hancelliworld",
+            "https://www.tiktok.com/@hancelliworld"
+        ]
+    };
+
     return (
         <main className="bg-black min-h-screen">
+            {/* Structured JSON-LD Data for SEO */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+
             {/* LIQUID NAVBAR (FIXED) */}
             <HancelliHeader />
 
