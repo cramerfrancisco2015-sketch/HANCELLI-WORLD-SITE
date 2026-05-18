@@ -6,8 +6,8 @@ const WAITLIST_ENDPOINT = "https://formspree.io/f/mdajoapb";
 const isWaitlistDisabled =
   !WAITLIST_ENDPOINT || WAITLIST_ENDPOINT.includes("COLOCAR_ENDPOINT");
 
-const imgTransition = { duration: 1.1, ease: [0.22, 1, 0.36, 1] };
-const textTransition = { duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] };
+const imgTransition = { duration: 1.1, ease: "easeOut" };
+const textTransition = { duration: 0.85, delay: 0.15, ease: "easeOut" };
 
 export default function Lookbook() {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'disabled'>('idle');
