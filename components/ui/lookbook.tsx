@@ -120,7 +120,7 @@ export default function Lookbook({ lang }: LookbookProps) {
   };
 
   return (
-    <section id="historia" className="relative overflow-hidden bg-black text-white border-t border-white/5">
+    <section id="historia" className="relative overflow-hidden bg-black text-white border-t border-white/5 scroll-mt-20 md:scroll-mt-24">
       
       {/* MANIFESTO BLOCK */}
       <motion.div 
@@ -128,7 +128,7 @@ export default function Lookbook({ lang }: LookbookProps) {
         initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
-        className="relative min-h-auto lg:min-h-[115svh] flex flex-col items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
+        className="relative min-h-auto lg:min-h-[115svh] flex flex-col items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none scroll-mt-20 md:scroll-mt-24"
       >
         <h2 className="font-oswald uppercase text-[clamp(2.4rem,5.6vw,6.4rem)] leading-[0.98] tracking-[-0.025em] text-white text-center max-w-[1120px] mx-auto">
           <span className="block">{t.manifestoLine1}</span>
@@ -215,7 +215,7 @@ export default function Lookbook({ lang }: LookbookProps) {
         initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
-        className="relative min-h-auto lg:min-h-[115svh] flex items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none"
+        className="relative min-h-auto lg:min-h-[115svh] flex items-center justify-center py-24 md:py-36 lg:py-44 px-6 overflow-hidden max-md:!opacity-100 max-md:!transform-none max-md:!filter-none scroll-mt-20 md:scroll-mt-24"
       >
         <div className="w-full max-w-lg bg-white/[0.025] border border-white/[0.08] p-8 md:p-12 rounded-[2rem] shadow-[0_32px_100px_rgba(0,0,0,0.5)] backdrop-blur-xl flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">{t.waitlistHeader}</span>
@@ -266,7 +266,7 @@ export default function Lookbook({ lang }: LookbookProps) {
                   onFocus={() => setIsFormFocused(true)}
                   onBlur={() => setIsFormFocused(false)}
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-white/30 transition-colors"
-                  placeholder="teu@email.com"
+                  placeholder={t.placeholderEmail}
                 />
               </div>
               
@@ -282,7 +282,7 @@ export default function Lookbook({ lang }: LookbookProps) {
                     onFocus={() => setIsFormFocused(true)}
                     onBlur={() => setIsFormFocused(false)}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-white/30 transition-colors"
-                    placeholder="+351..."
+                    placeholder={t.placeholderWhatsapp}
                   />
                 </div>
                 
@@ -318,7 +318,9 @@ export default function Lookbook({ lang }: LookbookProps) {
               <button 
                 type="submit" 
                 disabled={formStatus === 'loading' || formStatus === 'disabled'}
-                className="w-full mt-4 py-4 bg-[#F2F0E9] text-black font-semibold text-[11px] uppercase tracking-[0.22em] rounded-full hover:bg-white hover:-translate-y-0.5 transition-all shadow-lg disabled:opacity-50 disabled:hover:translate-y-0"
+                className={`w-full mt-4 min-h-[50px] py-2 px-4 flex items-center justify-center bg-[#F2F0E9] text-black font-semibold text-[11px] uppercase rounded-full hover:bg-white hover:-translate-y-0.5 transition-all shadow-lg disabled:opacity-50 disabled:hover:translate-y-0 whitespace-normal break-keep pointer-events-auto relative z-20 ${
+                  lang === 'zh' ? 'tracking-normal' : 'tracking-[0.22em]'
+                }`}
               >
                 {formStatus === 'loading' ? t.btnLoading : t.btnWaitlist}
               </button>

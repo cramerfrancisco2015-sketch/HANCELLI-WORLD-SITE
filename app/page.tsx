@@ -65,7 +65,7 @@ export default function Home() {
             <HancelliHeader currentLang={lang} onLanguageChange={handleLanguageChange} />
 
             {/* HERO VIDEO */}
-            <section id="inicio" className="relative min-h-[100svh] w-full overflow-hidden flex items-center justify-center">
+            <section id="inicio" className="relative min-h-[100svh] w-full overflow-hidden flex items-center justify-center scroll-mt-20 md:scroll-mt-24">
                 {/* Overlay — z-10 */}
                 <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/70 via-black/30 to-black/80 pointer-events-none"></div>
 

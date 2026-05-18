@@ -12,7 +12,7 @@ export default function ArchiveDrop({ lang }: ArchiveDropProps) {
     const t = translations[lang].archiveDrop;
 
     return (
-        <section id="produto" className="relative w-full bg-black py-24 md:py-32 flex flex-col items-center justify-center border-t border-white/5">
+        <section id="produto" className="relative w-full bg-black py-24 md:py-32 flex flex-col items-center justify-center border-t border-white/5 scroll-mt-20 md:scroll-mt-24">
             {/* Background elements */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0,rgba(0,0,0,1)_70%)] pointer-events-none"></div>
             
@@ -150,10 +150,20 @@ export default function ArchiveDrop({ lang }: ArchiveDropProps) {
                             {t.waitlistCardDesc}
                         </p>
                         
-                        <a href="#pre-lista" className="w-full py-4 bg-[#F2F0E9] text-black font-semibold text-[10px] uppercase tracking-[0.2em] rounded-full hover:bg-white hover:-translate-y-0.5 transition-all mb-3 shadow-lg text-center">
+                        <a 
+                            href="#pre-lista" 
+                            className={`w-full min-h-[50px] py-2 px-4 flex items-center justify-center bg-[#F2F0E9] text-black font-semibold text-[10px] uppercase rounded-full hover:bg-white hover:-translate-y-0.5 transition-all mb-3 shadow-lg text-center whitespace-normal break-keep pointer-events-auto relative z-20 ${
+                                lang === 'zh' ? 'tracking-normal' : 'tracking-[0.2em]'
+                            }`}
+                        >
                             {t.btnWaitlist}
                         </a>
-                        <a href="#pre-lista" className="w-full py-4 border border-white/15 text-white/80 font-medium text-[10px] uppercase tracking-[0.2em] rounded-full hover:bg-white/10 hover:text-white transition-all text-center">
+                        <a 
+                            href="#pre-lista" 
+                            className={`w-full min-h-[50px] py-2 px-4 flex items-center justify-center border border-white/15 text-white/80 font-medium text-[10px] uppercase rounded-full hover:bg-white/10 hover:text-white transition-all text-center whitespace-normal break-keep pointer-events-auto relative z-20 ${
+                                lang === 'zh' ? 'tracking-normal' : 'tracking-[0.2em]'
+                            }`}
+                        >
                             {t.btnSaveDrop}
                         </a>
                     </div>

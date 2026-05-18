@@ -11,7 +11,7 @@ export default function Checkout({ lang, onLanguageChange }: CheckoutProps) {
   const t = translations[lang].checkout;
 
   return (
-    <footer id="contacto" className="relative border-t border-white/10 bg-zinc-950/50 backdrop-blur-md pt-20 pb-12 px-6 overflow-hidden">
+    <footer id="contacto" className="relative border-t border-white/10 bg-zinc-950/50 backdrop-blur-md pt-20 pb-12 px-6 overflow-hidden scroll-mt-20 md:scroll-mt-24">
       {/* Background soft glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
 
@@ -30,7 +30,9 @@ export default function Checkout({ lang, onLanguageChange }: CheckoutProps) {
           </p>
           <a
             href="#pre-lista"
-            className="inline-flex items-center justify-center px-10 py-4 bg-white text-black hover:bg-zinc-100 text-xs uppercase tracking-widest font-bold transition-all hover:scale-105 rounded-full"
+            className={`inline-flex items-center justify-center px-10 py-4 bg-white text-black hover:bg-zinc-100 text-xs uppercase font-bold transition-all hover:scale-105 rounded-full ${
+              lang === 'zh' ? 'tracking-normal' : 'tracking-widest'
+            }`}
             style={{ fontFamily: 'Oswald, sans-serif' }}
           >
             {t.footerBtn}
@@ -113,7 +115,9 @@ export default function Checkout({ lang, onLanguageChange }: CheckoutProps) {
         </div>
 
         {/* RIGHTS RESERVED ROW */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/5 text-center md:text-left text-[10px] text-zinc-500 uppercase tracking-widest font-mono">
+        <div className={`flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/5 text-center md:text-left text-[10px] text-zinc-500 uppercase font-mono ${
+          lang === 'zh' ? 'tracking-normal' : 'tracking-widest'
+        }`}>
           <span>{t.rightsReserved}</span>
           <span className="text-zinc-600">{t.editionTag}</span>
         </div>
