@@ -56,8 +56,18 @@ export interface TranslationSchema {
     placeholderName: string;
     labelEmail: string;
     placeholderEmail: string;
-    labelWhatsapp: string;
-    placeholderWhatsapp: string;
+    labelContact: string;
+    placeholderContact: string;
+    labelCountryCode: string;
+    contactCountryPortugal: string;
+    contactCountryAngola: string;
+    contactCountryBrazil: string;
+    contactCountryFrance: string;
+    contactCountryGermany: string;
+    contactCountryUK: string;
+    contactCountryUSA: string;
+    contactCountryChina: string;
+    contactCountryOther: string;
     labelSize: string;
     sizePlaceholder: string;
     sizeHint: string;
@@ -157,8 +167,18 @@ export const translations: Record<Language, TranslationSchema> = {
       placeholderName: "O teu nome",
       labelEmail: "EMAIL",
       placeholderEmail: "teu@email.com",
-      labelWhatsapp: "WHATSAPP (OPCIONAL)",
-      placeholderWhatsapp: "+351...",
+      labelContact: "CONTACTO (OPCIONAL)",
+      placeholderContact: "Número de contacto",
+      labelCountryCode: "PAÍS",
+      contactCountryPortugal: "Portugal",
+      contactCountryAngola: "Angola",
+      contactCountryBrazil: "Brasil",
+      contactCountryFrance: "França",
+      contactCountryGermany: "Alemanha",
+      contactCountryUK: "Reino Unido",
+      contactCountryUSA: "Estados Unidos",
+      contactCountryChina: "China",
+      contactCountryOther: "Outro",
       labelSize: "TAMANHO PREFERIDO",
       sizePlaceholder: "Ainda não sei",
       sizeHint: "Escolhe o tamanho que costumas usar em jeans. Se não tiveres certeza, seleciona ‘Ainda não sei’.",
@@ -261,8 +281,18 @@ export const translations: Record<Language, TranslationSchema> = {
       placeholderName: "Your name",
       labelEmail: "EMAIL",
       placeholderEmail: "your@email.com",
-      labelWhatsapp: "WHATSAPP (OPTIONAL)",
-      placeholderWhatsapp: "+351...",
+      labelContact: "CONTACT (OPTIONAL)",
+      placeholderContact: "Contact number",
+      labelCountryCode: "COUNTRY",
+      contactCountryPortugal: "Portugal",
+      contactCountryAngola: "Angola",
+      contactCountryBrazil: "Brazil",
+      contactCountryFrance: "France",
+      contactCountryGermany: "Germany",
+      contactCountryUK: "United Kingdom",
+      contactCountryUSA: "United States",
+      contactCountryChina: "China",
+      contactCountryOther: "Other",
       labelSize: "PREFERRED SIZE",
       sizePlaceholder: "I don't know yet",
       sizeHint: "Choose the size you usually wear. If you're not sure, select 'I don't know yet'.",
@@ -365,8 +395,18 @@ export const translations: Record<Language, TranslationSchema> = {
       placeholderName: "Votre nom",
       labelEmail: "EMAIL",
       placeholderEmail: "votre@email.com",
-      labelWhatsapp: "WHATSAPP (OPTIONNEL)",
-      placeholderWhatsapp: "+33...",
+      labelContact: "CONTACT (OPTIONNEL)",
+      placeholderContact: "Numéro de contact",
+      labelCountryCode: "PAYS",
+      contactCountryPortugal: "Portugal",
+      contactCountryAngola: "Angola",
+      contactCountryBrazil: "Brésil",
+      contactCountryFrance: "France",
+      contactCountryGermany: "Allemagne",
+      contactCountryUK: "Royaume-Uni",
+      contactCountryUSA: "États-Unis",
+      contactCountryChina: "Chine",
+      contactCountryOther: "Autre",
       labelSize: "TAILLE SOUHAITÉE",
       sizePlaceholder: "Je ne sais pas encore",
       sizeHint: "Choisissez la taille que vous portez habituellement. Si vous n'êtes pas sûr, sélectionnez 'Je ne sais pas encore'.",
@@ -469,8 +509,18 @@ export const translations: Record<Language, TranslationSchema> = {
       placeholderName: "Dein Name",
       labelEmail: "E-MAIL",
       placeholderEmail: "deine@email.com",
-      labelWhatsapp: "WHATSAPP (OPTIONAL)",
-      placeholderWhatsapp: "+49...",
+      labelContact: "KONTAKT (OPTIONAL)",
+      placeholderContact: "Kontaktnummer",
+      labelCountryCode: "LAND",
+      contactCountryPortugal: "Portugal",
+      contactCountryAngola: "Angola",
+      contactCountryBrazil: "Brasilien",
+      contactCountryFrance: "Frankreich",
+      contactCountryGermany: "Deutschland",
+      contactCountryUK: "Vereinigtes Königreich",
+      contactCountryUSA: "Vereinigte Staaten",
+      contactCountryChina: "China",
+      contactCountryOther: "Andere",
       labelSize: "WUNSCHGRÖSSE",
       sizePlaceholder: "Ich weiß noch nicht",
       sizeHint: "Wähle die Größe, die du normalerweise trägst. Wenn du dir nicht sicher bist, wähle 'Ich weiß noch nicht'.",
@@ -573,8 +623,18 @@ export const translations: Record<Language, TranslationSchema> = {
       placeholderName: "您的姓名",
       labelEmail: "电子邮箱",
       placeholderEmail: "your@email.com",
-      labelWhatsapp: "WHATSAPP (选填)",
-      placeholderWhatsapp: "+86...",
+      labelContact: "联系方式 (选填)",
+      placeholderContact: "联系电话",
+      labelCountryCode: "国家/地区",
+      contactCountryPortugal: "葡萄牙",
+      contactCountryAngola: "安哥拉",
+      contactCountryBrazil: "巴西",
+      contactCountryFrance: "法国",
+      contactCountryGermany: "德国",
+      contactCountryUK: "英国",
+      contactCountryUSA: "美国",
+      contactCountryChina: "中国",
+      contactCountryOther: "其他",
       labelSize: "心仪尺码",
       sizePlaceholder: "我还不确定",
       sizeHint: "选择您平时穿的牛仔裤尺码。如果不确定，请选择“我还不确定”。",

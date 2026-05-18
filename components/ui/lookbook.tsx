@@ -10,6 +10,23 @@ const isWaitlistDisabled =
 const imgTransition: Transition = { duration: 1.1, ease: "easeOut" };
 const textTransition: Transition = { duration: 0.85, delay: 0.15, ease: "easeOut" };
 
+type ContactCountryOption = {
+  countryKey: 'Portugal' | 'Angola' | 'Brazil' | 'France' | 'Germany' | 'UK' | 'USA' | 'China' | 'Other';
+  code: string;
+};
+
+const CONTACT_COUNTRIES: ContactCountryOption[] = [
+  { countryKey: "Portugal", code: "+351" },
+  { countryKey: "Angola", code: "+244" },
+  { countryKey: "Brazil", code: "+55" },
+  { countryKey: "France", code: "+33" },
+  { countryKey: "Germany", code: "+49" },
+  { countryKey: "UK", code: "+44" },
+  { countryKey: "USA", code: "+1" },
+  { countryKey: "China", code: "+86" },
+  { countryKey: "Other", code: "" },
+];
+
 interface LookbookProps {
   lang: Language;
 }
@@ -18,10 +35,26 @@ export default function Lookbook({ lang }: LookbookProps) {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'disabled'>('idle');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
+  const [contactCountry, setContactCountry] = useState('Portugal');
+  const [contactDialCode, setContactDialCode] = useState('+351');
   const [size, setSize] = useState('Unknown');
 
   const t = translations[lang].lookbook;
+
+  const getLocalizedCountryName = (countryKey: string) => {
+    switch (countryKey) {
+      case 'Portugal': return t.contactCountryPortugal;
+      case 'Angola': return t.contactCountryAngola;
+      case 'Brazil': return t.contactCountryBrazil;
+      case 'France': return t.contactCountryFrance;
+      case 'Germany': return t.contactCountryGermany;
+      case 'UK': return t.contactCountryUK;
+      case 'USA': return t.contactCountryUSA;
+      case 'China': return t.contactCountryChina;
+      default: return t.contactCountryOther;
+    }
+  };
   const popupMessages = t.popupMessages;
 
   // Popup states
@@ -103,7 +136,11 @@ export default function Lookbook({ lang }: LookbookProps) {
         body: JSON.stringify({
           name: name.trim(),
           email,
-          whatsapp,
+          contactCountry,
+          contactDialCode,
+          contactNumber: contactNumber.trim(),
+          contactFull: contactNumber.trim() ? `${contactDialCode} ${contactNumber.trim()}`.trim() : '',
+          whatsapp: contactNumber.trim() ? `${contactDialCode} ${contactNumber.trim()}`.trim() : '',
           size: size === 'Unknown' ? t.sizePlaceholder : size,
           source: "HANCELLI_WORLD_WAITLIST",
           interest: "ARCHIVE_PT_01_HANCELLI_JEANS",
@@ -270,42 +307,77 @@ export default function Lookbook({ lang }: LookbookProps) {
                 />
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* WHATSAPP INPUT */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="whatsapp" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">{t.labelWhatsapp}</label>
+              {/* CONTACT INPUT */}
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="contact" className={`text-[10px] uppercase text-zinc-500 ml-1 ${lang === 'zh' ? 'tracking-normal' : 'tracking-widest'}`}>{t.labelContact}</label>
+                <div className="grid grid-cols-[135px_1fr] gap-2">
+                  <div className="relative">
+                    <select 
+                      id="country-code"
+                      value={contactDialCode}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setContactDialCode(val);
+                        const matched = CONTACT_COUNTRIES.find(c => c.code === val);
+                        if (matched) {
+                          setContactCountry(matched.countryKey);
+                        }
+                      }}
+                      onFocus={() => setIsFormFocused(true)}
+                      onBlur={() => setIsFormFocused(false)}
+                      className="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-3 text-xs text-white outline-none focus:border-white/30 transition-colors appearance-none cursor-pointer pr-8"
+                    >
+                      {CONTACT_COUNTRIES.map((c) => (
+                        <option key={c.countryKey} value={c.code} className="bg-zinc-900 text-xs">
+                          {getLocalizedCountryName(c.countryKey)} {c.code}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-zinc-500">
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                      </svg>
+                    </div>
+                  </div>
                   <input 
                     type="tel" 
-                    id="whatsapp"
-                    value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
+                    id="contact"
+                    value={contactNumber}
+                    onChange={(e) => setContactNumber(e.target.value)}
                     onFocus={() => setIsFormFocused(true)}
                     onBlur={() => setIsFormFocused(false)}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-white/30 transition-colors"
-                    placeholder={t.placeholderWhatsapp}
+                    placeholder={t.placeholderContact}
                   />
                 </div>
-                
-                {/* SIZE SELECT */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="size" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">{t.labelSize}</label>
+              </div>
+
+              {/* SIZE SELECT */}
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="size" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">{t.labelSize}</label>
+                <div className="relative">
                   <select 
                     id="size"
                     value={size}
                     onChange={(e) => setSize(e.target.value)}
                     onFocus={() => setIsFormFocused(true)}
                     onBlur={() => setIsFormFocused(false)}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-white/30 transition-colors appearance-none"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-white/30 transition-colors appearance-none cursor-pointer pr-10"
                   >
                     <option value="Unknown" className="bg-zinc-900">{t.sizePlaceholder}</option>
                     {['28', '30', '32', '34', '36', '38', '40', '42', '44', '46', '48'].map(s => (
                       <option key={s} value={s} className="bg-zinc-900">{s}</option>
                     ))}
                   </select>
-                  <span className="text-[9px] text-zinc-500 ml-1 leading-normal">
-                    {t.sizeHint}
-                  </span>
+                  <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-zinc-500">
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                    </svg>
+                  </div>
                 </div>
+                <span className="text-[9px] text-zinc-500 ml-1 leading-normal mt-0.5">
+                  {t.sizeHint}
+                </span>
               </div>
 
               {formStatus === 'disabled' && (
