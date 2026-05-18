@@ -43,7 +43,7 @@ export default function Home() {
                         playsInline
                         preload="metadata"
                     >
-                        <source src="/videos/hancelli-hero-mobile.optimized.mp4" type="video/mp4" />
+                        <source src="/videos/hancelli-hero-mobile.mp4" type="video/mp4" />
                     </video>
                 )}
 
@@ -57,7 +57,7 @@ export default function Home() {
                         playsInline
                         preload="metadata"
                     >
-                        <source src="/videos/hancelli-hero.optimized.mp4" type="video/mp4" />
+                        <source src="/videos/hancelli-hero.mp4" type="video/mp4" />
                     </video>
                 )}
 
