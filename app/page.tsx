@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Lookbook from '@/components/ui/lookbook'
 import ArchiveDrop from '@/components/ui/archive-drop'
 
@@ -7,6 +7,22 @@ import Checkout from '@/components/ui/checkout'
 import HancelliHeader from '@/components/landing/HancelliHeader'
 
 export default function Home() {
+    const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        const frame = requestAnimationFrame(() => {
+            setIsMobile(mediaQuery.matches);
+        });
+
+        const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+        mediaQuery.addEventListener('change', handler);
+        return () => {
+            cancelAnimationFrame(frame);
+            mediaQuery.removeEventListener('change', handler);
+        };
+    }, []);
+
     return (
         <main className="bg-black min-h-screen">
             {/* LIQUID NAVBAR (FIXED) */}
@@ -17,29 +33,33 @@ export default function Home() {
                 {/* Overlay — z-10 */}
                 <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/70 via-black/30 to-black/80 pointer-events-none"></div>
 
-                {/* Mobile video — z-0 */}
-                <video
-                    className="absolute inset-0 z-0 h-full w-full object-cover object-center opacity-90 block md:hidden pointer-events-none"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
-                >
-                    <source src="/videos/hancelli-hero-mobile.mp4" type="video/mp4" />
-                </video>
+                {/* Mobile video — loaded only on mobile devices to prevent double download */}
+                {isMobile === true && (
+                    <video
+                        className="absolute inset-0 z-0 h-full w-full object-cover object-center opacity-90 pointer-events-none"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                    >
+                        <source src="/videos/hancelli-hero-mobile.optimized.mp4" type="video/mp4" />
+                    </video>
+                )}
 
-                {/* Desktop video — z-0 */}
-                <video
-                    className="absolute inset-0 z-0 h-full w-full object-cover opacity-90 hidden md:block pointer-events-none"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
-                >
-                    <source src="/videos/hancelli-hero.mp4" type="video/mp4" />
-                </video>
+                {/* Desktop video — loaded only on desktop/tablet to prevent double download */}
+                {isMobile === false && (
+                    <video
+                        className="absolute inset-0 z-0 h-full w-full object-cover opacity-90 pointer-events-none"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                    >
+                        <source src="/videos/hancelli-hero.optimized.mp4" type="video/mp4" />
+                    </video>
+                )}
 
                 {/* Texto central — z-20, sem Framer Motion para garantir visibilidade iOS */}
                 <div

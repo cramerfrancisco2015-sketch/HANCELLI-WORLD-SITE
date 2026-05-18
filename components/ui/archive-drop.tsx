@@ -108,9 +108,9 @@ export default function ArchiveDrop() {
                         loop 
                         muted 
                         playsInline
-                        preload="auto"
+                        preload="metadata"
                     >
-                        <source src="/videos/hancelli-360.mp4" type="video/mp4" />
+                        <source src="/videos/hancelli-360.optimized.mp4" type="video/mp4" />
                     </video>
 
                     {/* Museum-like label inside the box */}

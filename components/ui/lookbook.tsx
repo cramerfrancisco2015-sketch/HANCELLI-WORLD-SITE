@@ -79,7 +79,7 @@ export default function Lookbook() {
               transition={imgTransition}
               className="relative w-full max-w-[480px] aspect-[3/4] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-black shadow-[0_30px_100px_rgba(0,0,0,0.45)] ring-1 ring-inset ring-white/[0.06] group max-md:!opacity-100 max-md:!transform-none"
             >
-              <img src="/images/hancelli/lookbook-archive.png?v=20260516-2" alt="Poster do Arquivo HANCELLI" className="object-cover object-center w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+              <img src="/images/hancelli/lookbook-archive.jpg?v=20260516-2" loading="lazy" alt="Poster do Arquivo HANCELLI" className="object-cover object-center w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
             </motion.div>
           </div>
           <motion.div 
@@ -128,7 +128,7 @@ export default function Lookbook() {
               transition={imgTransition}
               className="relative w-full max-w-md aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.35)] bg-[#0a0a0a] max-md:!opacity-100 max-md:!transform-none"
             >
-              <img src="https://i.ibb.co/bR6M0rfx/d5b14a82-9c58-4d61-aaf9-e1017bc078aa.png" alt="Campanha Cultural HANCELLI" className="object-cover object-center w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-700" />
+              <img src="https://i.ibb.co/bR6M0rfx/d5b14a82-9c58-4d61-aaf9-e1017bc078aa.png" loading="lazy" alt="Campanha Cultural HANCELLI" className="object-cover object-center w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-700" />
             </motion.div>
           </div>
         </div>
