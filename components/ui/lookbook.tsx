@@ -1,6 +1,6 @@
 'use client'
-import React, { useState } from 'react';
-import { motion, type Transition } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, type Transition, AnimatePresence } from 'framer-motion';
 
 const WAITLIST_ENDPOINT = "https://formspree.io/f/mdajoapb";
 const isWaitlistDisabled =
@@ -9,11 +9,83 @@ const isWaitlistDisabled =
 const imgTransition: Transition = { duration: 1.1, ease: "easeOut" };
 const textTransition: Transition = { duration: 0.85, delay: 0.15, ease: "easeOut" };
 
+const POPUP_MESSAGES = [
+  "WAITLIST UPDATE — Nova entrada registada para o Archive PT.01.",
+  "ARCHIVE PT.01 — A lista de espera está em movimento.",
+  "WAITLIST ATIVA — O primeiro drop já começou a reunir interessados.",
+  "HANCELLI WORLD — Uma nova entrada foi registada há instantes."
+];
+
 export default function Lookbook() {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'disabled'>('idle');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [size, setSize] = useState('Ainda não sei');
+
+  // Popup states
+  const [showPopup, setShowPopup] = useState(false);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
+  const [isFormFocused, setIsFormFocused] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.75) {
+        setHasScrolledPastHero(true);
+      } else {
+        setHasScrolledPastHero(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    const fallbackTimer = setTimeout(() => {
+      if (window.scrollY > 50) {
+        setHasScrolledPastHero(true);
+      }
+    }, 15000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(fallbackTimer);
+    };
+  }, []);
+
+  // Ensure popup is closed immediately if form is focused, submitted or user is at the top
+  const shouldShowPopup = showPopup && hasScrolledPastHero && formStatus !== 'success' && !isFormFocused;
+
+  // Main schedule effect
+  useEffect(() => {
+    if (!hasScrolledPastHero || formStatus === 'success' || isFormFocused) {
+      return;
+    }
+
+    let hideTimeout: NodeJS.Timeout;
+
+    const triggerPopupSequence = () => {
+      setCurrentMessageIndex(Math.floor(Math.random() * POPUP_MESSAGES.length));
+      setShowPopup(true);
+
+      hideTimeout = setTimeout(() => {
+        setShowPopup(prev => prev ? false : prev);
+      }, 6000);
+    };
+
+    const showTimeout = setTimeout(triggerPopupSequence, 3000);
+
+    const interval = setInterval(() => {
+      if (!isFormFocused) {
+        triggerPopupSequence();
+      }
+    }, 45000);
+
+    return () => {
+      clearTimeout(showTimeout);
+      clearTimeout(hideTimeout);
+      clearInterval(interval);
+    };
+  }, [hasScrolledPastHero, formStatus, isFormFocused]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,10 +100,11 @@ export default function Lookbook() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          name: name.trim(),
           email,
           whatsapp,
           size,
-          source: "HANCELLI_WORLD_PRE_LISTA",
+          source: "HANCELLI_WORLD_WAITLIST",
           interest: "ARCHIVE_PT_01_HANCELLI_JEANS",
           launchDiscountInterest: true,
           submittedAt: new Date().toISOString()
@@ -144,20 +217,42 @@ export default function Lookbook() {
       >
         <div className="w-full max-w-lg bg-white/[0.025] border border-white/[0.08] p-8 md:p-12 rounded-[2rem] shadow-[0_32px_100px_rgba(0,0,0,0.5)] backdrop-blur-xl flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-[0.28em] text-white/40 font-mono mb-4">ARCHIVE PT.01 — PRIMEIRO DROP</span>
-          <h3 className="font-oswald text-2xl md:text-4xl leading-[0.95] tracking-tight text-white mb-4 uppercase">ENTRA NA PRÉ-LISTA DO PRIMEIRO DROP</h3>
+          <h3 className="font-oswald text-2xl md:text-4xl leading-[0.95] tracking-tight text-white mb-4 uppercase">ENTRA NA WAITLIST DO PRIMEIRO DROP</h3>
           <p className="font-sans text-sm leading-7 text-white/58 max-w-md text-center mb-8">
             Recebe primeiro a data de lançamento, disponibilidade de tamanhos e acesso ao desconto de lançamento.
           </p>
 
           {formStatus === 'success' ? (
             <div className="flex flex-col items-center justify-center py-8 w-full border border-white/10 rounded-2xl bg-white/5 px-6 text-center">
-              <p className="text-sm text-white font-medium tracking-wide">Estás na pré-lista.</p>
+              <p className="text-sm text-white font-medium tracking-wide">
+                {name.trim() 
+                  ? `${name.trim().split(/\s+/)[0].charAt(0).toUpperCase() + name.trim().split(/\s+/)[0].slice(1).toLowerCase()}, estás oficialmente na waitlist.` 
+                  : "Estás oficialmente na waitlist."}
+              </p>
               <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
-                Enviámos uma confirmação para o teu email com os próximos passos do Archive PT.01.
+                Os próximos passos do Archive PT.01 serão enviados para o teu email.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 text-left">
+              {/* NOME INPUT */}
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="name" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">NOME</label>
+                <input 
+                  type="text" 
+                  id="name"
+                  required
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  onFocus={() => setIsFormFocused(true)}
+                  onBlur={() => setIsFormFocused(false)}
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-white/30 transition-colors"
+                  placeholder="O teu nome"
+                />
+              </div>
+
+              {/* EMAIL INPUT */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="email" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">EMAIL</label>
                 <input 
@@ -166,12 +261,15 @@ export default function Lookbook() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onFocus={() => setIsFormFocused(true)}
+                  onBlur={() => setIsFormFocused(false)}
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-white/30 transition-colors"
                   placeholder="teu@email.com"
                 />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* WHATSAPP INPUT */}
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="whatsapp" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">WHATSAPP (OPCIONAL)</label>
                   <input 
@@ -179,17 +277,22 @@ export default function Lookbook() {
                     id="whatsapp"
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
+                    onFocus={() => setIsFormFocused(true)}
+                    onBlur={() => setIsFormFocused(false)}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-white/30 transition-colors"
                     placeholder="+351..."
                   />
                 </div>
                 
+                {/* SIZE SELECT */}
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="size" className="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">TAMANHO PREFERIDO</label>
                   <select 
                     id="size"
                     value={size}
                     onChange={(e) => setSize(e.target.value)}
+                    onFocus={() => setIsFormFocused(true)}
+                    onBlur={() => setIsFormFocused(false)}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-white/30 transition-colors appearance-none"
                   >
                     {['Ainda não sei', '28', '30', '32', '34', '36', '38', '40', '42', '44', '46', '48'].map(s => (
@@ -214,7 +317,7 @@ export default function Lookbook() {
                 disabled={formStatus === 'loading' || formStatus === 'disabled'}
                 className="w-full mt-4 py-4 bg-[#F2F0E9] text-black font-semibold text-[11px] uppercase tracking-[0.22em] rounded-full hover:bg-white hover:-translate-y-0.5 transition-all shadow-lg disabled:opacity-50 disabled:hover:translate-y-0"
               >
-                {formStatus === 'loading' ? 'A CARREGAR...' : 'ENTRAR NA PRÉ-LISTA'}
+                {formStatus === 'loading' ? 'A CARREGAR...' : 'ENTRAR NA LISTA DE ESPERA'}
               </button>
 
               <p className="text-[10px] text-zinc-500 leading-normal text-center mt-3 font-sans">
@@ -222,7 +325,7 @@ export default function Lookbook() {
               </p>
 
               <p className="text-[9px] text-zinc-600 leading-normal text-center mt-1.5 font-sans">
-                Ao entrares na pré-lista, aceitas ser contactado pela HANCELLI WORLD sobre o lançamento. Consulta a{' '}
+                Ao entrares na waitlist, aceitas ser contactado pela HANCELLI WORLD sobre o lançamento. Consulta a{' '}
                 <a href="/privacidade" className="underline hover:text-white transition-colors">
                   Política de Privacidade
                 </a>
@@ -248,6 +351,30 @@ export default function Lookbook() {
           </div>
         </div>
       </motion.div>
-    </section>
-  );
+
+      {/* Premium Waitlist Activity Toast */}
+      <AnimatePresence>
+        {shouldShowPopup && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed bottom-6 right-6 z-[99999] max-w-[340px] w-[calc(100vw-32px)] bg-black/95 border border-white/10 p-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl flex items-center gap-3"
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-white/80 leading-normal">
+              {POPUP_MESSAGES[currentMessageIndex]}
+            </p>
+            <button 
+              onClick={() => setShowPopup(false)}
+              className="text-zinc-500 hover:text-white text-xs ml-auto pl-2 transition-colors font-sans"
+            >
+              ✕
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </section>
+);
 }

@@ -48,9 +48,10 @@ export default function PrivacidadePage() {
                     <section className="flex flex-col gap-3">
                         <h2 className="text-white font-bold uppercase tracking-wider text-xs font-mono">2. Dados Pessoais Recolhidos</h2>
                         <p>
-                            Recolhemos apenas os dados estritamente necessários para as finalidades da nossa pré-lista:
+                            Recolhemos apenas os dados estritamente necessários para as finalidades da nossa waitlist:
                         </p>
                         <ul className="list-disc pl-5 flex flex-col gap-1 text-zinc-400">
+                            <li><strong>Nome</strong> (obrigatório) — para personalização de contactos.</li>
                             <li><strong>Email</strong> (obrigatório) — para comunicações por e-mail.</li>
                             <li><strong>WhatsApp / Telemóvel</strong> (opcional, se fornecido) — para contacto direto ou alertas rápidos.</li>
                             <li><strong>Tamanho Preferido</strong> (opcional, se selecionado) — para nos ajudar a planejar a produção do stock de jeans.</li>

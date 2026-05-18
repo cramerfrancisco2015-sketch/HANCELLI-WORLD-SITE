@@ -7,7 +7,7 @@ const navLinks = [
     { name: 'Início', href: '#inicio' },
     { name: 'Produto', href: '#produto' },
     { name: 'História', href: '#historia' },
-    { name: 'Pré-lista', href: '#pre-lista' }
+    { name: 'WAITLIST', href: '#pre-lista' }
 ]
 
 export default function HancelliHeader() {
@@ -42,13 +42,13 @@ export default function HancelliHeader() {
                         HANCELLI WORLD
                     </a>
 
-                    {/* Botão CTA à direita: PRÉ-LISTA */}
+                    {/* Botão CTA à direita: WAITLIST */}
                     <a
                         href="#pre-lista"
                         className="rounded-full bg-white text-black px-4 py-2 text-[0.65rem] font-bold tracking-[0.18em] uppercase pointer-events-auto transition-transform active:scale-95 duration-200"
                         style={{ fontFamily: 'Oswald, sans-serif' }}
                     >
-                        PRÉ-LISTA
+                        WAITLIST
                     </a>
                 </div>
             </header>

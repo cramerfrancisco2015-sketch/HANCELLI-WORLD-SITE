@@ -83,7 +83,7 @@ export default function ArchiveDrop() {
                         </div>
                         <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-mono text-zinc-500">
                             <span>ESTADO:</span>
-                            <span className="text-zinc-300">PRÉ-LISTA ABERTA</span>
+                            <span className="text-zinc-300">WAITLIST ABERTA</span>
                         </div>
                     </div>
                     
@@ -132,17 +132,17 @@ export default function ArchiveDrop() {
                     {/* Primary CTA Card */}
                     <div className="bg-white/[0.025] border border-white/[0.08] p-8 rounded-3xl backdrop-blur-xl flex flex-col shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
                         <div className="flex items-center gap-2 mb-6">
-                            <span className="text-[10px] tracking-[0.2em] text-zinc-300 uppercase font-medium">PRÉ-LISTA</span>
+                            <span className="text-[10px] tracking-[0.2em] text-zinc-300 uppercase font-medium">WAITLIST</span>
                         </div>
                         
-                        <h4 className="text-xl font-medium text-white mb-3">Garante o teu lugar na pré-lista</h4>
+                        <h4 className="text-xl font-medium text-white mb-3">Garante o teu lugar na waitlist</h4>
                         
                         <p className="text-xs text-zinc-400 leading-relaxed mb-8">
                             Deixa o teu email, WhatsApp e tamanho de interesse para receberes primeiro a data de lançamento, disponibilidade e acesso ao desconto de pré-lançamento.
                         </p>
                         
                         <a href="#pre-lista" className="w-full py-4 bg-[#F2F0E9] text-black font-semibold text-[10px] uppercase tracking-[0.2em] rounded-full hover:bg-white hover:-translate-y-0.5 transition-all mb-3 shadow-lg text-center">
-                            ENTRAR NA PRÉ-LISTA
+                            ENTRAR NA LISTA DE ESPERA
                         </a>
                         <a href="#pre-lista" className="w-full py-4 border border-white/15 text-white/80 font-medium text-[10px] uppercase tracking-[0.2em] rounded-full hover:bg-white/10 hover:text-white transition-all text-center">
                             GUARDAR O DROP
