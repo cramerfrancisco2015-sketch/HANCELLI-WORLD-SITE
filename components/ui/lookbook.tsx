@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const WAITLIST_ENDPOINT = "https://formspree.io/f/mdajoapb";
+const isWaitlistDisabled =
+  !WAITLIST_ENDPOINT || WAITLIST_ENDPOINT.includes("COLOCAR_ENDPOINT");
 
 const imgTransition = { duration: 1.1, ease: [0.22, 1, 0.36, 1] };
 const textTransition = { duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] };
@@ -15,7 +17,7 @@ export default function Lookbook() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (WAITLIST_ENDPOINT === "COLOCAR_ENDPOINT_FORMSPREE_AQUI" || !WAITLIST_ENDPOINT) {
+    if (isWaitlistDisabled) {
       setFormStatus('disabled');
       return;
     }
