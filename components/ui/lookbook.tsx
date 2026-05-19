@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, type Transition, AnimatePresence } from 'framer-motion';
 import { type Language, translations } from '@/lib/translations';
 
-const WAITLIST_ENDPOINT = "https://formspree.io/f/mdajoapb";
-const isWaitlistDisabled =
-  !WAITLIST_ENDPOINT || WAITLIST_ENDPOINT.includes("COLOCAR_ENDPOINT");
+const WAITLIST_ENDPOINT = "/api/waitlist";
+const isWaitlistDisabled = false;
 
 const imgTransition: Transition = { duration: 1.1, ease: "easeOut" };
 const textTransition: Transition = { duration: 0.85, delay: 0.15, ease: "easeOut" };

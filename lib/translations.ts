@@ -83,6 +83,10 @@ export interface TranslationSchema {
     privacyLink: string;
     benefit1Title: string;
     benefit1Desc: string;
+    emailSubject: string;
+    emailTitle: string;
+    emailBody: string;
+    emailSignature: string;
     benefit2Title: string;
     benefit2Desc: string;
     benefit3Title: string;
@@ -194,6 +198,10 @@ export const translations: Record<Language, TranslationSchema> = {
       privacyLink: "Política de Privacidade",
       benefit1Title: "ACESSO ANTECIPADO",
       benefit1Desc: "Recebe os detalhes antes do público.",
+      emailSubject: "HANCELLI WORLD — Waitlist Confirmada",
+      emailTitle: "Estás oficialmente na waitlist.",
+      emailBody: "Recebemos o teu pedido para o Archive PT.01. Vais ser avisado antes do lançamento oficial, incluindo data de lançamento, disponibilidade de tamanhos e acesso antecipado.",
+      emailSignature: "HANCELLI WORLD — Jeans feito à mão. Memória cultural para vestir.",
       benefit2Title: "DESCONTO DE LANÇAMENTO",
       benefit2Desc: "Acesso a desconto exclusivo de lançamento.",
       benefit3Title: "PRIORIDADE NO TAMANHO",
@@ -308,6 +316,10 @@ export const translations: Record<Language, TranslationSchema> = {
       privacyLink: "Privacy Policy",
       benefit1Title: "EARLY ACCESS",
       benefit1Desc: "Receive details before the public.",
+      emailSubject: "HANCELLI WORLD — Waitlist Confirmed",
+      emailTitle: "You are officially on the waitlist.",
+      emailBody: "We have received your request for Archive PT.01. You will be notified before the official launch, including launch date, size availability, and early access.",
+      emailSignature: "HANCELLI WORLD — Handmade denim. Wearable cultural memory.",
       benefit2Title: "LAUNCH DISCOUNT",
       benefit2Desc: "Access to exclusive launch discounts.",
       benefit3Title: "SIZE PRIORITY",
@@ -422,6 +434,10 @@ export const translations: Record<Language, TranslationSchema> = {
       privacyLink: "Politique de Confidentialité",
       benefit1Title: "ACCÈS ANTICIPÉ",
       benefit1Desc: "Recevez les détails avant le grand public.",
+      emailSubject: "HANCELLI WORLD — Waitlist Confirmée",
+      emailTitle: "Tu es officiellement sur la waitlist.",
+      emailBody: "Nous avons bien reçu ta demande pour l'Archive PT.01. Tu seras prévenu avant le lancement officiel, y compris la date de sortie, la disponibilité des tailles et l'accès anticipé.",
+      emailSignature: "HANCELLI WORLD — Jeans faits main. Mémoire culturelle à porter.",
       benefit2Title: "OFFRE DE LANCEMENT",
       benefit2Desc: "Accès aux réductions exclusives de lancement.",
       benefit3Title: "PRIORITÉ DE TAILLE",
@@ -536,6 +552,10 @@ export const translations: Record<Language, TranslationSchema> = {
       privacyLink: "Datenschutzerklärung",
       benefit1Title: "VORZEITIGER ZUGANG",
       benefit1Desc: "Erhalte alle Details vor der Öffentlichkeit.",
+      emailSubject: "HANCELLI WORLD — Waitlist bestätigt",
+      emailTitle: "Du bist offiziell auf der Waitlist.",
+      emailBody: "Wir haben deine Anfrage für Archive PT.01 erhalten. Du wirst vor dem offiziellen Launch benachrichtigt, einschließlich Launch-Termin, Größenverfügbarkeit und Early Access.",
+      emailSignature: "HANCELLI WORLD — Handgefertigter Denim. Tragbare kulturelle Erinnerung.",
       benefit2Title: "LAUNCH-RABATT",
       benefit2Desc: "Exklusiver Rabatt zum Verkaufsstart.",
       benefit3Title: "GRÖSSENPRIORITÄT",
@@ -650,6 +670,10 @@ export const translations: Record<Language, TranslationSchema> = {
       privacyLink: "隐私政策",
       benefit1Title: "尊享抢先通道",
       benefit1Desc: "优先于公众获取发售详情与配额。",
+      emailSubject: "HANCELLI WORLD — Waitlist 确认成功",
+      emailTitle: "您已成功加入 WAITLIST。",
+      emailBody: "我们已收到您对 Archive PT.01 的加入请求。在正式发售前，您将第一时间获取包括发售日期、心仪尺码库存及优先购买权等专属通知。",
+      emailSignature: "HANCELLI WORLD — 手工定制牛仔。穿在身上的文化珍存。",
       benefit2Title: "首发特惠特权",
       benefit2Desc: "专享首发限定系列的独家折扣。",
       benefit3Title: "尺码优先配额",
