@@ -114,11 +114,17 @@ export async function POST(request: Request) {
         if (resendRes.ok) {
           resendSuccess = true;
         } else {
-          const resendError = await resendRes.json();
-          console.error("Resend delivery failed:", resendError);
+          const resendError = await resendRes.json().catch(() => ({}));
+          console.error("Waitlist email send failed", {
+            status: resendRes.status,
+            error: resendError?.message || resendError?.name || "Unknown Resend error"
+          });
         }
       } catch (err) {
-        console.error("Error sending email via Resend:", err);
+        const errorMsg = err instanceof Error ? err.message : "Network error";
+        console.error("Waitlist email send failed", {
+          error: errorMsg
+        });
       }
     } else {
       console.warn("RESEND_API_KEY is not configured. Email confirmation was skipped.");
