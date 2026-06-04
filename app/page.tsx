@@ -20,6 +20,10 @@ export default function Home() {
         return () => cancelAnimationFrame(frame);
     }, []);
 
+    useEffect(() => {
+        document.documentElement.lang = lang;
+    }, [lang]);
+
     const handleLanguageChange = (newLang: Language) => {
         setLang(newLang);
         saveLanguage(newLang);
