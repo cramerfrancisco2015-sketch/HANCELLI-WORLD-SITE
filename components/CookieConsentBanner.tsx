@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { type Language, translations } from '@/lib/translations';
 import { getInitialLanguage } from '@/lib/language';
 import { initMetaPixel, trackMetaPageView, grantMetaConsent, revokeMetaConsent } from '@/lib/metaPixel';
@@ -13,6 +14,22 @@ export default function CookieConsentBanner({ lang }: CookieConsentBannerProps) 
   const [langState, setLangState] = useState<Language>('pt');
   const [isVisible, setIsVisible] = useState(false);
   const t = translations[langState].cookieConsent;
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const consent = localStorage.getItem('hancelli_cookie_consent');
+    if (consent) {
+      try {
+        const parsed = JSON.parse(consent);
+        if (parsed.marketing === true) {
+          trackMetaPageView(pathname);
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -28,9 +45,19 @@ export default function CookieConsentBanner({ lang }: CookieConsentBannerProps) 
     });
 
     const handleOpenSettings = () => {
+      const latest = getInitialLanguage();
+      setLangState(latest);
       setIsVisible(true);
     };
     window.addEventListener("hancelli:open-cookie-settings", handleOpenSettings);
+
+    const handleLanguageChange = (e: Event) => {
+      const customEvent = e as CustomEvent<Language>;
+      if (customEvent.detail) {
+        setLangState(customEvent.detail);
+      }
+    };
+    window.addEventListener("hancelli:language-change", handleLanguageChange);
 
     const consent = localStorage.getItem('hancelli_cookie_consent');
     let frameConsent: number | undefined;
@@ -44,10 +71,9 @@ export default function CookieConsentBanner({ lang }: CookieConsentBannerProps) 
       try {
         const parsed = JSON.parse(consent);
         if (parsed.marketing === true) {
-          // Initialize and track PageView for returning consenting users
+          // Initialize for returning consenting users
           grantMetaConsent();
           initMetaPixel();
-          trackMetaPageView();
         }
       } catch {
         frameConsent = requestAnimationFrame(() => {
@@ -58,6 +84,7 @@ export default function CookieConsentBanner({ lang }: CookieConsentBannerProps) 
 
     return () => {
       window.removeEventListener("hancelli:open-cookie-settings", handleOpenSettings);
+      window.removeEventListener("hancelli:language-change", handleLanguageChange);
       cancelAnimationFrame(frameLang);
       if (frameConsent !== undefined) {
         cancelAnimationFrame(frameConsent);
@@ -78,7 +105,7 @@ export default function CookieConsentBanner({ lang }: CookieConsentBannerProps) 
     if (marketingGranted) {
       grantMetaConsent();
       initMetaPixel();
-      trackMetaPageView();
+      trackMetaPageView(pathname);
     } else {
       revokeMetaConsent();
     }

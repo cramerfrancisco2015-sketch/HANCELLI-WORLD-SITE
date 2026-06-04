@@ -17,7 +17,6 @@ declare global {
 
 let isInitialized = false;
 let lastTrackedPathname = "";
-let leadTrackedThisSession = false;
 
 function hasMarketingConsent(): boolean {
   if (typeof window === "undefined") return false;
@@ -143,15 +142,8 @@ export function trackMetaLead(): void {
   if (!isInitialized) {
     initMetaPixel();
   }
-  
-  const alreadyTracked = localStorage.getItem("hancelli_lead_tracked");
-  if (alreadyTracked === "true" || leadTrackedThisSession) {
-    return;
-  }
 
   if (isInitialized && window.fbq) {
     window.fbq("track", "Lead");
-    localStorage.setItem("hancelli_lead_tracked", "true");
-    leadTrackedThisSession = true;
   }
 }

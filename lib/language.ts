@@ -30,6 +30,7 @@ export function saveLanguage(lang: Language): void {
   if (typeof window !== 'undefined') {
     try {
       window.localStorage.setItem('hancelli_lang', lang);
+      window.dispatchEvent(new CustomEvent('hancelli:language-change', { detail: lang }));
     } catch (e) {
       console.error('Failed to save language to localStorage:', e);
     }

@@ -101,6 +101,9 @@ export default function Lookbook({ lang }: LookbookProps) {
       setCurrentMessageIndex(Math.floor(Math.random() * popupMessages.length));
       setShowPopup(true);
 
+      if (hideTimeout) {
+        clearTimeout(hideTimeout);
+      }
       hideTimeout = setTimeout(() => {
         setShowPopup(prev => prev ? false : prev);
       }, 6000);
@@ -118,6 +121,7 @@ export default function Lookbook({ lang }: LookbookProps) {
       clearTimeout(showTimeout);
       clearTimeout(hideTimeout);
       clearInterval(interval);
+      setShowPopup(false);
     };
   }, [hasScrolledPastHero, formStatus, isFormFocused, popupMessages.length]);
 
