@@ -55,7 +55,7 @@ export default function PrivacidadePage() {
                             <li><strong>Email</strong> (obrigatório) — para comunicações por e-mail.</li>
                             <li><strong>WhatsApp / Telemóvel</strong> (opcional, se fornecido) — para contacto direto ou alertas rápidos.</li>
                             <li><strong>Tamanho Preferido</strong> (opcional, se selecionado) — para nos ajudar a planejar a produção do stock de jeans.</li>
-                            <li><strong>Dados Técnicos Básicos</strong> — cookies essenciais do navegador para a estabilidade da sessão técnico-operacional do site.</li>
+                            <li><strong>Dados Técnicos Básicos e Navegação:</strong> Cookies essenciais para estabilidade técnica e, caso consinta explicitamente no banner de cookies, dados técnicos de navegação e eventos de utilização, incluindo identificadores técnicos associados ao navegador ou dispositivo (como o evento de visualização de página ou confirmação de registo na waitlist) transmitidos ao Meta Pixel. Nenhum nome, email ou telemóvel inserido no formulário de inscrição é enviado para a Meta.</li>
                         </ul>
                     </section>
 
@@ -83,7 +83,7 @@ export default function PrivacidadePage() {
                     <section className="flex flex-col gap-3">
                         <h2 className="text-white font-bold uppercase tracking-wider text-xs font-mono">6. Partilha de Dados com Terceiros</h2>
                         <p>
-                            Não comercializamos, vendemos nem alugamos os seus dados pessoais a quaisquer terceiros. Os seus dados poderão ser processados por ferramentas técnicas de formulário e e-mail necessárias à gestão da pré-lista, como a plataforma Formspree ou ferramentas equivalentes, quando integradas, garantindo estrita confidencialidade.
+                            Não comercializamos, vendemos nem alugamos os seus dados pessoais a quaisquer terceiros. Os seus dados poderão ser processados por ferramentas técnicas de formulário e e-mail necessárias à gestão da pré-lista (como a plataforma Formspree ou Resend). Adicionalmente, caso autorize os cookies de marketing, dados técnicos de navegação e eventos de utilização, incluindo identificadores técnicos associados ao navegador ou dispositivo, são partilhados com a Meta Platforms para otimização de anúncios. Nenhum dado pessoal introduzido na waitlist (como nome, email ou número telefónico) é enviado para o Meta Pixel.
                         </p>
                     </section>
 

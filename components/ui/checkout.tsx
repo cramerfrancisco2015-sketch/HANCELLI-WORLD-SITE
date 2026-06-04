@@ -110,6 +110,15 @@ export default function Checkout({ lang, onLanguageChange }: CheckoutProps) {
               <a href="/cookies" className="block hover:text-white transition-colors">
                 {t.linkCookies}
               </a>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.dispatchEvent(new Event("hancelli:open-cookie-settings"));
+                }}
+                className="block text-left hover:text-white transition-colors cursor-pointer touch-manipulation text-xs text-zinc-400"
+              >
+                {t.footerManageCookies}
+              </button>
             </div>
           </div>
         </div>

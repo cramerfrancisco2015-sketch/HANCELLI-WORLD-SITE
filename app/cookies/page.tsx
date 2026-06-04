@@ -48,7 +48,7 @@ export default function CookiesPage() {
                     <section className="flex flex-col gap-3">
                         <h2 className="text-white font-bold uppercase tracking-wider text-xs font-mono">2. Como Usamos os Cookies</h2>
                         <p>
-                            Nesta fase inicial de lançamento e recolha de interesse para a nossa pré-lista, a HANCELLI WORLD utiliza apenas <strong>cookies estritamente técnicos e necessários</strong>. Estes cookies garantem o funcionamento correto e seguro do site e a submissão estável dos formulários. Caso, no futuro, venhamos a integrar ferramentas externas de análise estatística de visitas, pixels de conversão ou ferramentas de publicidade, esta política será atualizada e o seu consentimento prévio será expressamente solicitado.
+                            A HANCELLI WORLD utiliza cookies para garantir a segurança, estabilidade e o correto funcionamento do site na submissão de formulários. Adicionalmente, com o seu consentimento prévio, utilizamos cookies de marketing e tecnologias de rastreio (como o Meta Pixel) para analisar visitas, otimizar campanhas de divulgação e direcionar audiências relevantes nas redes sociais do grupo Meta.
                         </p>
                     </section>
 
@@ -59,10 +59,7 @@ export default function CookiesPage() {
                                 <strong>Cookies Necessários:</strong> Fundamentais para a segurança do site, estabilidade do servidor e proteção contra spam ou ataques na submissão de formulários. Não requerem consentimento prévio por serem essenciais para a navegação.
                             </li>
                             <li>
-                                <strong>Cookies de Análise (Futuro):</strong> Utilizados de forma anónima para compreender a origem das visitas, páginas mais visualizadas e taxas de conversão de pré-lista. Só serão ativados após autorização.
-                            </li>
-                            <li>
-                                <strong>Cookies de Marketing (Futuro):</strong> Utilizados para ligar a sua visita a plataformas externas de publicidade (e.g. Meta Ads, Google Ads). Só serão ativados com consentimento explícito.
+                                <strong>Cookies de Marketing e Análise:</strong> Integração de pixels de terceiros (como o Meta Pixel) para medição de visitas, atribuição, medição de audiências e otimização de campanhas publicitárias. Estes cookies só são descarregados e ativados após o seu consentimento explícito no banner de cookies.
                             </li>
                         </ul>
                     </section>
@@ -70,14 +67,14 @@ export default function CookiesPage() {
                     <section className="flex flex-col gap-3">
                         <h2 className="text-white font-bold uppercase tracking-wider text-xs font-mono">4. Cookies de Terceiros</h2>
                         <p>
-                            Determinados serviços externos integrados (como as plataformas de entrega de e-mails de formulário, e-commerce básico ou fontes carregadas) podem descarregar os seus próprios cookies técnicos no navegador. Além disso, ao clicar em links que apontam para as nossas redes sociais oficiais (Instagram, TikTok), essas plataformas externas utilizarão cookies governados pelas suas respetivas políticas de privacidade de terceiros.
+                            Ao consentir no nosso banner de cookies, a plataforma Meta (Facebook) poderá depositar cookies de rastreio e recolher metadados técnicos de navegação (como o evento de visualização de página e inscrição na waitlist) com o objetivo de atribuir e otimizar campanhas de anúncios. Além disso, ao navegar para as nossas redes sociais (Instagram, TikTok), os cookies dessas redes são governados pelas suas respetivas políticas de privacidade de terceiros.
                         </p>
                     </section>
 
                     <section className="flex flex-col gap-3">
                         <h2 className="text-white font-bold uppercase tracking-wider text-xs font-mono">5. Gestão de Cookies pelo Utilizador</h2>
                         <p>
-                            Poderá gerir, bloquear ou apagar os cookies armazenados no seu dispositivo a qualquer momento, ajustando as definições de privacidade e cookies diretamente no painel do seu navegador (Browser). Note que a desativação completa de cookies estritamente necessários poderá impactar a capacidade de preencher e submeter o formulário de pré-lista com sucesso.
+                            Poderá gerir, bloquear ou apagar os cookies armazenados no seu dispositivo a qualquer momento, ajustando as definições de privacidade e cookies diretamente no painel do seu navegador (Browser). Adicionalmente, poderá rever ou alterar a sua preferência de consentimento a qualquer momento utilizando o botão <strong>GERIR COOKIES</strong> disponível no rodapé (footer) do nosso site. Lembramos que o Meta Pixel de marketing e análise permanece totalmente desativado até que dê o seu consentimento explícito.
                         </p>
                     </section>
 

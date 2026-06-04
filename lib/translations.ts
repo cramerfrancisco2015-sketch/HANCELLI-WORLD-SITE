@@ -107,6 +107,14 @@ export interface TranslationSchema {
     linkCookies: string;
     rightsReserved: string;
     editionTag: string;
+    footerManageCookies: string;
+  };
+  cookieConsent: {
+    cookieTitle: string;
+    cookieDescription: string;
+    cookieAccept: string;
+    cookieReject: string;
+    cookieLearnMore: string;
   };
 }
 
@@ -226,7 +234,15 @@ export const translations: Record<Language, TranslationSchema> = {
       linkPrivacy: "Política de Privacidade",
       linkCookies: "Política de Cookies",
       rightsReserved: "© 2026 HANCELLI WORLD. Todos os direitos reservados.",
-      editionTag: "EDITION PT.01 — MADE IN PORTUGAL"
+      editionTag: "EDITION PT.01 — MADE IN PORTUGAL",
+      footerManageCookies: "GERIR COOKIES"
+    },
+    cookieConsent: {
+      cookieTitle: "Valorizamos a sua privacidade",
+      cookieDescription: "Utilizamos cookies e tecnologias semelhantes (como o Meta Pixel) para compreender a origem das visitas, otimizar campanhas e melhorar a sua navegação. O tracking de marketing só é ativado se consentir.",
+      cookieAccept: "ACEITAR",
+      cookieReject: "RECUSAR",
+      cookieLearnMore: "SABER MAIS"
     }
   },
   en: {
@@ -344,7 +360,15 @@ export const translations: Record<Language, TranslationSchema> = {
       linkPrivacy: "Privacy Policy",
       linkCookies: "Cookie Policy",
       rightsReserved: "© 2026 HANCELLI WORLD. All rights reserved.",
-      editionTag: "EDITION PT.01 — MADE IN PORTUGAL"
+      editionTag: "EDITION PT.01 — MADE IN PORTUGAL",
+      footerManageCookies: "MANAGE COOKIES"
+    },
+    cookieConsent: {
+      cookieTitle: "We value your privacy",
+      cookieDescription: "We use cookies and similar technologies (like the Meta Pixel) to understand visit origins, optimize campaigns, and improve your browsing. Marketing tracking is only activated if you consent.",
+      cookieAccept: "ACCEPT",
+      cookieReject: "DECLINE",
+      cookieLearnMore: "LEARN MORE"
     }
   },
   fr: {
@@ -462,7 +486,15 @@ export const translations: Record<Language, TranslationSchema> = {
       linkPrivacy: "Politique de Confidentialité",
       linkCookies: "Politique de Cookies",
       rightsReserved: "© 2026 HANCELLI WORLD. Tous droits réservés.",
-      editionTag: "EDITION PT.01 — MADE IN PORTUGAL"
+      editionTag: "EDITION PT.01 — MADE IN PORTUGAL",
+      footerManageCookies: "GÉRER LES COOKIES"
+    },
+    cookieConsent: {
+      cookieTitle: "Nous respectons votre vie privée",
+      cookieDescription: "Nous utilisons des cookies et des technologies similaires (comme le Meta Pixel) pour comprendre l'origine des visites, optimiser les campagnes et améliorer votre navigation. Le suivi marketing n'est activé qu'avec votre consentement.",
+      cookieAccept: "ACCEPTER",
+      cookieReject: "REFUSER",
+      cookieLearnMore: "EN SAVOIR PLUS"
     }
   },
   de: {
@@ -580,7 +612,15 @@ export const translations: Record<Language, TranslationSchema> = {
       linkPrivacy: "Datenschutzerklärung",
       linkCookies: "Cookie-Richtlinie",
       rightsReserved: "© 2026 HANCELLI WORLD. Alle Rechte vorbehalten.",
-      editionTag: "EDITION PT.01 — MADE IN PORTUGAL"
+      editionTag: "EDITION PT.01 — MADE IN PORTUGAL",
+      footerManageCookies: "COOKIES VERWALTEN"
+    },
+    cookieConsent: {
+      cookieTitle: "Wir schätzen Ihre Privatsphäre",
+      cookieDescription: "Wir verwenden Cookies und ähnliche Technologien (wie das Meta-Pixel), um die Herkunft der Besuche zu verstehen, Kampagnen zu optimieren und Ihr Surferlebnis zu verbessern. Marketing-Tracking wird nur nach Ihrer Einwilligung aktiviert.",
+      cookieAccept: "AKZEPTIEREN",
+      cookieReject: "ABLEHNEN",
+      cookieLearnMore: "MEHR ERFAHREN"
     }
   },
   zh: {
@@ -698,7 +738,15 @@ export const translations: Record<Language, TranslationSchema> = {
       linkPrivacy: "隐私政策协议",
       linkCookies: "Cookie 政策说明",
       rightsReserved: "© 2026 HANCELLI WORLD. 保留所有权利。",
-      editionTag: "EDITION PT.01 — MADE IN PORTUGAL"
+      editionTag: "EDITION PT.01 — MADE IN PORTUGAL",
+      footerManageCookies: "管理 COOKIE"
+    },
+    cookieConsent: {
+      cookieTitle: "我们重视您的隐私",
+      cookieDescription: "我们使用 cookie 和类似技术（例如 Meta Pixel）来分析访问来源、优化推广活动并提升您的浏览体验。只有在您同意后才会启用营销追踪。",
+      cookieAccept: "接受",
+      cookieReject: "拒绝",
+      cookieLearnMore: "了解更多"
     }
   }
 };

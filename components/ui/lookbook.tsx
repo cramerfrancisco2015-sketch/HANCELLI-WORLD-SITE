@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, type Transition, AnimatePresence } from 'framer-motion';
 import { type Language, translations } from '@/lib/translations';
+import { trackMetaLead } from '@/lib/metaPixel';
 
 const WAITLIST_ENDPOINT = "/api/waitlist";
 const isWaitlistDisabled = false;
@@ -111,7 +112,7 @@ export default function Lookbook({ lang }: LookbookProps) {
       if (!isFormFocused) {
         triggerPopupSequence();
       }
-    }, 45000);
+    }, 35000);
 
     return () => {
       clearTimeout(showTimeout);
@@ -148,8 +149,12 @@ export default function Lookbook({ lang }: LookbookProps) {
           language: lang
         })
       });
-      if (res.ok) setFormStatus('success');
-      else setFormStatus('error');
+      if (res.ok) {
+        setFormStatus('success');
+        trackMetaLead();
+      } else {
+        setFormStatus('error');
+      }
     } catch {
       setFormStatus('error');
     }
